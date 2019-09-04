@@ -12,6 +12,8 @@
  */
 public class Magpie
 {
+    // INSTANCE VARIABLES
+    private boolean knowsAboutPets = false;
 	/**
 	 * Get a default greeting 	
 	 * @return a greeting
@@ -30,7 +32,10 @@ public class Magpie
 	 */
 	public String getResponse(String statement)
 	{
-		String response = "";
+            statement = statement.trim().toLowerCase();
+            if (statement.length() == 0) return "Sprechen sie englisch?";
+		
+                String response = "";
 		if (statement.indexOf("no") >= 0)
 		{
 			response = "Why so negative?";
@@ -42,6 +47,26 @@ public class Magpie
 		{
 			response = "Tell me more about your family.";
 		}
+                else if (statement.indexOf("dog") >= 0
+                                || statement.indexOf("cat") >= 0){
+                        response = "Tell me more about your pets.";
+                // TODO: prevent repeat comment with a toggle
+                }
+                else if (statement.indexOf("adiletta") >= 0
+                                || statement.indexOf("mr. adiletta") >= 0){
+                        response = "Woah, mr. adiletta? I hear he is a really good programmer!";
+                }
+                else if (statement.indexOf("rick roll") >= 0
+                                || statement.indexOf("roll me") >= 0){
+                        response = "never gonna gove you up, never gonna let you down, never gonna run around and desert you, never gonna make you cry, never gonna say goodbye, never gonna tell a lie, and hurt you";
+                }
+                else if (statement.indexOf("joe") >= 0){
+                        response = "Joe? Joe Mama???";
+                }
+                else if (statement.indexOf("goodbye") >= 0
+                                || statement.indexOf("seeya") >= 0){
+                        response = "Ha you're never allowed to leave... Please.";
+                }
 		else
 		{
 			response = getRandomResponse();
@@ -55,7 +80,7 @@ public class Magpie
 	 */
 	private String getRandomResponse()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES =6;
 		double r = Math.random();
 		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
 		String response = "";
@@ -76,7 +101,14 @@ public class Magpie
 		{
 			response = "You don't say.";
 		}
-		
+		else if (whichResponse == 4)
+		{
+			response = "haha. whatever you say.";
+		}
+                else if (whichResponse == 5)
+		{
+			response = "somebody once told me the world was gonna roll me.";
+		}
 		return response;
 	}
 }
